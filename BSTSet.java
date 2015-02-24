@@ -3,9 +3,7 @@
  */
 
 public class BSTSet<E extends Comparable<E>> {
-	private BinarySearchTree<E> data = new BinarySearchTree<>(); // where the
-																	// set data
-																	// is kept
+	private BinarySearchTree<E> data = new BinarySearchTree<>(); // where the set data is kept
 
 	// Adds the specified newItem to the set. 
 	public void add(E newItem) {
