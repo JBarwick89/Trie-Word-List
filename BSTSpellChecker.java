@@ -105,12 +105,12 @@ public class BSTSpellChecker {
 		
 		// testing of addFile method
 		test.addFile("wordlist_english.txt");
-		//System.out.println(test);
+		System.out.println(test);
 		
 		
 		// testing of balancedAddFileMethod
 		test.balancedAddFile("wordlist_english.txt");
-		//System.out.println(test);
+		System.out.println(test);
 		
 	}
 }
