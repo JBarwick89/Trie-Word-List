@@ -28,10 +28,8 @@ public class BinarySearchTree<E extends Comparable<E>> implements Iterable<E> {
 	}
 
 	// Nested class that implements an in-order iterator over the BST. We
-	// maintain the
-	// current node where the iterator is, along with a stack to track which
-	// nodes still
-	// need to be visited.
+	// maintain the current node where the iterator is, along with a stack to track which
+	// nodes still need to be visited.
 	
 	private class InOrderIterator implements Iterator<E> {
 		private Node<E> current = root;
@@ -68,10 +66,8 @@ public class BinarySearchTree<E extends Comparable<E>> implements Iterable<E> {
 
 	private Node<E> root;
 	private E deleteReturn; // tracks which item was just deleted from the tree
-							// (so that the delete method can return something)
 
-	// Returns an iterator over this BST. Required for the class to implement
-	// Iterable.
+	// Returns an iterator over this BST. 
 	public Iterator<E> iterator() {
 		return new InOrderIterator();
 	}
@@ -115,28 +111,22 @@ public class BinarySearchTree<E extends Comparable<E>> implements Iterable<E> {
 
 	// Recursively adds newItem to the tree rooted at where.
 	private void add(E newItem, Node<E> where) {
-		// remember that a.compareTo(b) returns 0 if a is "equal to" b, a
-		// negative value if a is "less than" b, or
-		// a positive value if a is "greater than" b
+
 		int compare = newItem.compareTo(where.data);
-		if (compare < 0 && where.left == null) // base case - add a new left
-												// child to where
+		if (compare < 0 && where.left == null) // base case - add a new left child to where
 			where.left = new Node<E>(newItem, null, null);
-		else if (compare > 0 && where.right == null) // base case - add a new
-														// right child to where
+		else if (compare > 0 && where.right == null) // base case - add a new right child to where
 			where.right = new Node<E>(newItem, null, null);
 		else if (compare < 0)
-			add(newItem, where.left); // recursively add newItem to where's left
-										// subtree
+			add(newItem, where.left); // recursively add newItem to where's left subtree
 		else if (compare > 0)
-			add(newItem, where.right); // recursively add newItem to where's
-										// right subtree
+			add(newItem, where.right); // recursively add newItem to where's right subtree
 
 		// (do nothing if compare == 0... we don't allow duplicate elements in
 		// the tree)
 	}
 
-	// Alternate version of add (the way it's done in the textbook).
+	// Alternate version of add 
 	public void add2(E newItem) {
 		root = add2(newItem, root);
 	}
@@ -173,8 +163,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements Iterable<E> {
 
 			if (compare == 0) // base case - someItem found
 				return where.data;
-			else if (compare < 0) // recursively search where's left subtree for
-									// someItem
+			else if (compare < 0) // recursively search where's left subtree for someItem
 				return find(someItem, where.left);
 			else
 				// recursively search where's right subtree for someItem
@@ -206,39 +195,32 @@ public class BinarySearchTree<E extends Comparable<E>> implements Iterable<E> {
 			return where;
 		} else { // base cases - someItem found
 			deleteReturn = where.data;
-			if (where.left == null && where.right == null) { // case 1 - where
-																// has no
-																// children
+			if (where.left == null && where.right == null) { // case 1 - where has no children
 				return null;
-			} else if (where.right == null) { // case 2a - where has only a left
-												// child
+			} else if (where.right == null) { // case 2a - where has only a left child
 				return where.left;
-			} else if (where.left == null) { // case 2b - where has only a right
-												// child
+			} else if (where.left == null) { // case 2b - where has only a right child
 				return where.right;
-			} else { // case 3 - oh noes! two children
+			} else { // case 3 - two children
 				where.data = findAndDeleteIOP(where);
 				return where;
 			}
 		}
 	}
 
-	// Finds and deletes the in-order predecessor of the node where. Returns the
-	// value of
+	// Finds and deletes the in-order predecessor of the node where. Returns the value of
 	// the IOP that was deleted.
 	private E findAndDeleteIOP(Node<E> where) {
 		Node<E> parent = where, temp = where.left;
 
-		// at the end of this loop, temp is pointing at the IOP, and parent is
-		// pointing
+		// at the end of this loop, temp is pointing at the IOP, and parent is pointing
 		// at the IOP's parent
 		while (temp.right != null) {
 			parent = temp;
 			temp = temp.right;
 		}
 
-		if (parent == where) // if parent and temp did not move down the tree at
-								// all (i.e., the IOP is where.left)
+		if (parent == where) // if parent and temp did not move down the tree at all (i.e., the IOP is where.left)
 			parent.left = temp.left;
 		else
 			parent.right = temp.left;
@@ -261,44 +243,24 @@ public class BinarySearchTree<E extends Comparable<E>> implements Iterable<E> {
 	}
 
 	public void addIterative(E newItem) {
-		if (root == null) { // exception for if the tree is empty. Then you just
-							// make the the new node the root.
+		if (root == null) { // exception for if the tree is empty. Then you just make the the new node the root.
 			root = new Node<E>(newItem, null, null);
 		} else {
 			Node<E> temp = root;
 
 			while (true) { // 5 cases
 				int comparison = newItem.compareTo(temp.data);
-				if (comparison == 0) { // 1) item is a duplicate of current node
-										// and should not be added
+				if (comparison == 0) { // 1) item is a duplicate of current node and should not be added
 					break;
-				} else if (comparison < 0 && temp.left == null) { // 2) item is
-																	// less than
-																	// current
-																	// node and
-																	// should be
-																	// its new
-																	// left
-																	// child
+				} else if (comparison < 0 && temp.left == null) { // 2) item is less than current node and should be its new left child
 					temp.left = new Node<E>(newItem, null, null);
 					break;
-				} else if (comparison > 0 && temp.right == null) { // 3) item is
-																	// greater
-																	// than
-																	// current
-																	// node and
-																	// should be
-																	// its new
-																	// right
-																	// child
+				} else if (comparison > 0 && temp.right == null) { // 3) item is greater than current node and should be its new right child
 					temp.right = new Node<E>(newItem, null, null);
 					break;
-				} else if (comparison < 0) { // 4) item is less than current
-												// node, and search continues in
-												// current node's left subtree
+				} else if (comparison < 0) { // 4) item is less than current node, and search continues in current node's left subtree
 					temp = temp.left;
-				} else { // 5) item is greater than current node, and search
-							// continues in current node's right subtree
+				} else { // 5) item is greater than current node, and search continues in current node's right subtree
 					temp = temp.right;
 				}
 			}
@@ -310,29 +272,15 @@ public class BinarySearchTree<E extends Comparable<E>> implements Iterable<E> {
 
 		while (true) { // 5 cases
 			int comparison = someItem.compareTo(temp.data);
-			if (comparison == 0) { // 1) item is a duplicate of current node and
-									// should not be added
+			if (comparison == 0) { // 1) item is a duplicate of current node and should not be added
 				return temp.data;
-			} else if (comparison < 0 && temp.left == null) { // 2) item is less
-																// than current
-																// node and
-																// should be its
-																// new left
-																// child
+			} else if (comparison < 0 && temp.left == null) { // 2) item is less than current node and should be its new left child
+			return null;
+			} else if (comparison > 0 && temp.right == null) { // 3) item is greater than current node and should be its new right child
 				return null;
-			} else if (comparison > 0 && temp.right == null) { // 3) item is
-																// greater than
-																// current node
-																// and should be
-																// its new right
-																// child
-				return null;
-			} else if (comparison < 0) { // 4) item is less than current node,
-											// and search continues in current
-											// node's left subtree
+			} else if (comparison < 0) { // 4) item is less than current node, and search continues in current node's left subtree
 				temp = temp.left;
-			} else { // 5) item is greater than current node, and search
-						// continues in current node's right subtree
+			} else { // 5) item is greater than current node, and search continues in current node's right subtree
 				temp = temp.right;
 			}
 		}
