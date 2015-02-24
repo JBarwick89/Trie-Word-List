@@ -277,7 +277,6 @@ public class TrieSpellChecker {
 	}
 
 	public static void main(String[] args) throws FileNotFoundException {
-		// Here is where we tested all of our code.
 		TrieSpellChecker testTrie = new TrieSpellChecker();
 
 		// testing of addFile and contains methods
@@ -289,17 +288,8 @@ public class TrieSpellChecker {
 		System.out.println(testTrie.contains("abandona"));
 		System.out.println(testTrie.contains("inaccessiibility"));
 
-		// testing of autocomplete()
-		// String[] words = {"abate", "at", "abating", "bat", "ars", "bats",
-		// "cats", "abatin", "stss", "er", "abater", "abatoeur", "ts", "atss",
-		// "ata", "rts", "arts", "as", "atrs"};
-		// for (String i : words){
-		// testTrie.add(i);
-		// }
-
 		// Finally, we test out the autocomplete method and closeMatches method.
-		// The accuracy
-		// at which these methods perform are...
+		// The accuracy at which these methods perform are...
 		System.out.println(testTrie.autocomplete("legend"));
 		// Wait for it...
 		System.out.println(testTrie.closeMatches("ary"));
