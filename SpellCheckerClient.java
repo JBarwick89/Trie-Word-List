@@ -23,7 +23,7 @@ public class SpellCheckerClient {
 		finish = System.nanoTime();
 		System.out.println("runtime for addFile with TrieSpellChecker: " + ((finish - start) / 1000000000) + " seconds");
 
-		System.out.println("\n\nTesting retrieval with BSTSpellChecker...\nword = \"roundabout\"");
+		System.out.println("\n\nTesting retrieval with BSTSpellChecker....\nword = \"roundabout\"");
 		start = System.nanoTime();
 		BSTTest.contains("roundabout");
 		finish = System.nanoTime();
