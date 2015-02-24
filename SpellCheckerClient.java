@@ -11,7 +11,7 @@ public class SpellCheckerClient {
 		TrieSpellChecker trieTest = new TrieSpellChecker();
 		BSTSpellChecker BSTTest = new BSTSpellChecker();
 
-		System.out.println("\nrunning balanced add method for BSTSpellChecker...");
+		System.out.println("\nrunning balanced add method for BSTSpellChecker....");
 		start = System.nanoTime();
 		BSTTest.balancedAddFile(file);
 		finish = System.nanoTime();
